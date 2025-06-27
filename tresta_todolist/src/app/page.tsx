@@ -4,19 +4,13 @@ import FloatingButton from "@/component/FloatingButton";
 import AddTaskForm from "@/component/AddTaskForm";
 import { useTask } from "@/context/TaskContext";
 import { v4 as uuidv4 } from "uuid";
-import { TaskStatus } from "@/types/Task";
+import { TaskStatus, Task } from "@/types/Task";
 import TaskList from "@/component/TaskList";
 
 export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
-  const [editData, setEditData] = useState<null | {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-  }>(null);
-
-  const [filter, setFilter] = useState<"All" | "Pending" | "In Progress" | "Completed">("All");
+  const [editData, setEditData] = useState<null | Task>(null);
+  const [filter, setFilter] = useState<"All" | TaskStatus>("All");
 
   const { state, dispatch } = useTask();
 
@@ -26,7 +20,7 @@ export default function HomePage() {
     status: string;
   }) => {
     if (editData) {
-      const updatedTask = {
+      const updatedTask: Task = {
         ...editData,
         title: taskData.title,
         description: taskData.description,
@@ -36,7 +30,7 @@ export default function HomePage() {
       dispatch({ type: "UPDATE", payload: updatedTask });
       setEditData(null);
     } else {
-      const newTask = {
+      const newTask: Task = {
         id: uuidv4(),
         title: taskData.title,
         description: taskData.description,
@@ -58,7 +52,7 @@ export default function HomePage() {
         {["All", "Pending", "In Progress", "Completed"].map((type) => (
           <button
             key={type}
-            onClick={() => setFilter(type as any)}
+            onClick={() => setFilter(type as "All" | TaskStatus)}
             className={`px-3 py-1 rounded ${
               filter === type
                 ? "bg-blue-600 text-white"
@@ -70,7 +64,7 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* Form */}
+      {/* Add/Edit Task Form */}
       {showForm && (
         <AddTaskForm
           onCancel={() => {

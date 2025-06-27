@@ -1,15 +1,11 @@
+// ✅ TaskList.tsx
 "use client";
 import React from "react";
 import { useTask } from "@/context/TaskContext";
 import { Task } from "@/types/Task";
 
 interface Props {
-  onEdit: (task: {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-  }) => void;
+  onEdit: (task: Task) => void;
   tasks: Task[];
 }
 
@@ -36,14 +32,7 @@ const TaskList: React.FC<Props> = ({ onEdit, tasks }) => {
 
           <button
             className="absolute top-2 right-10 text-green-500 hover:text-green-700 text-sm"
-            onClick={() =>
-              onEdit({
-                id: task.id,
-                title: task.title,
-                description: task.description,
-                status: task.status,
-              })
-            }
+            onClick={() => onEdit(task)}
           >
             ✏️
           </button>
