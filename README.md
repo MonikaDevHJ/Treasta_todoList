@@ -23,4 +23,33 @@ This is a task management web application built with **Next.js (App Router)**, *
 
 ## 📂 Folder Structure (important files)
 
-﻿# Treasta_todoList
+﻿/app
+page.tsx → Home page
+/_components
+Header.tsx
+Layout.tsx
+/src
+/component
+AddTaskForm.tsx
+FloatingButton.tsx
+... (more coming)
+/context
+TaskContext.tsx → Global state using useReducer
+/types
+Task.ts → Task model/type
+
+
+## 🚀 Getting Started
+
+```bash
+# Clone the project
+git clone https://github.com/your-username/tresata-task-manager.git
+
+cd tresata-task-manager
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
