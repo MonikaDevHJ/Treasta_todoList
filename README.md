@@ -39,17 +39,5 @@ TaskContext.tsx → Global state using useReducer
 Task.ts → Task model/type
 
 
-## 🚀 Getting Started
 
-```bash
-# Clone the project
-git clone https://github.com/your-username/tresata-task-manager.git
-
-cd tresata-task-manager
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
 
